@@ -194,7 +194,7 @@ export class JMTween {
     return this;
   }
 
-  public chain<U>(nextObj: any, totalTime?: number) {
+  public chain(nextObj: any, totalTime?: number) {
     this.nextTween = new JMTween(nextObj, totalTime);
 
     return this.nextTween;
