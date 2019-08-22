@@ -12,5 +12,8 @@ export class InlineDemo extends BaseUI {
     let backB = new JMButton('Back', () => this.destroy());
     backB.position.set(20, bounds.height - 50);
     this.addChild(backB);
+
+    let image = PIXI.Sprite.from('./assets/transformer.png');
+    this.addChild(image);
   }
 }
