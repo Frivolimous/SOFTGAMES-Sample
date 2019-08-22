@@ -1,7 +1,6 @@
 import * as _ from 'lodash';
 import * as PIXI from 'pixi.js';
 import { MainUI } from './ui/MainUI';
-import { FireDemo } from './ui/FireDemo';
 
 export let pixiApp: PIXI.Application;
 

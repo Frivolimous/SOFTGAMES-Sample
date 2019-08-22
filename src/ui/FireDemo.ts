@@ -10,7 +10,7 @@ export class FireDemo extends BaseUI {
   constructor(bounds: PIXI.Rectangle) {
     super(bounds, 0);
 
-    let title = new PIXI.Text('Fire Demo');
+    let title = new PIXI.Text('Fire Demo', {fill: 0xffff00});
     this.addChild(title);
 
     let backB = new JMButton('Back', this.navOut);
