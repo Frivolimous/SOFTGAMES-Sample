@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import { BaseUI } from './_BaseUI';
 import { JMButton } from './elements/JMButton';
 import { FireEffect } from '../lib/effects/FireEffect';
+import { JMTween } from '../lib/JMTween';
 
 export class FireDemo extends BaseUI {
 
@@ -44,6 +45,8 @@ export class FireDemo extends BaseUI {
     this.logs.addChild(log0, log1);
 
     this.onResize();
+
+    new JMTween(this, 500).from({alpha: 0.1}).start();
   }
 
   public onResize = () => {
@@ -55,7 +58,9 @@ export class FireDemo extends BaseUI {
   }
 
   protected navOut = () => {
-    this.fireEffect.end();
-    this.destroy();
+    new JMTween(this, 500).to({alpha: 0.1}).start().onComplete(()=>{
+      this.fireEffect.end();
+      this.destroy();
+    });
   }
 }

@@ -4,6 +4,7 @@ import { JMButton } from './elements/JMButton';
 import { CardDemo } from './CardDemo';
 import { InlineDemo } from './InlineDemo';
 import { FireDemo } from './FireDemo';
+import { JMTween } from '../lib/JMTween';
 
 export class MainUI extends BaseUI {
   private title: PIXI.Text;
@@ -12,10 +13,13 @@ export class MainUI extends BaseUI {
   private currentScreen: BaseUI;
 
   constructor(bounds: PIXI.Rectangle) {
-    super(bounds);
+    super(bounds, 0xcc9933);
 
-    this.title = new PIXI.Text('Main UI');
+    this.title = new PIXI.Text('Super Cool Demo!', {fontWeight: 'bold'});
+    this.title.anchor.set(0.5);
     this.title.y = 50;
+
+    new JMTween(this.title, 500).from({rotation: -Math.PI * 10, y: bounds.height}).start();
     this.addChild(this.title);
 
     let cardB = new JMButton('Cards', this.startCardDemo);
@@ -32,7 +36,7 @@ export class MainUI extends BaseUI {
 
   public onResize = () => {
     this.drawBackground();
-    this.title.x = (this.bounds.width - this.title.width) / 2;
+    this.title.x = (this.bounds.width) / 2;
     this.buttonContainer.position.set((this.bounds.width - 100) / 2, (this.bounds.height - 200) / 2);
 
     if (this.currentScreen) this.currentScreen.onResize();

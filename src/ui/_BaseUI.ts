@@ -10,9 +10,7 @@ export class BaseUI extends PIXI.Container {
     this.interactive = true;
     this.background = new PIXI.Graphics();
 
-    console.log('pre', bgColor);
     this.drawBackground();
-    console.log('post', bgColor);
 
     this.addChild(this.background);
   }

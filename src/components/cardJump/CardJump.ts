@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { pixiApp } from '../../index';
-import { JMTween } from '../../lib/JMTween';
+import { JMTween, JMEasing } from '../../lib/JMTween';
 
 const X_0 = 0;
 const X_1 = 300;
@@ -60,7 +60,9 @@ export class CardJump extends PIXI.Container {
       let y = Y_F - Y_DIFF * this.cards2.length;
       this.cards2.push(card);
       this.addChild(card);
-      new JMTween(card, 2000).to({x: X_1, y}).start();
+      let arcTop = Math.min(card.y, y) - 50;
+      new JMTween(card, 2000).to({x: X_1}).start();
+      new JMTween(card, 1000).to({y: arcTop}).easing(JMEasing.Quadratic.Out).start().chain(card, 1000).to({y}).easing(JMEasing.Quadratic.In);
     }
   }
 

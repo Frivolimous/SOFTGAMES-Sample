@@ -6,7 +6,6 @@ export let pixiApp: PIXI.Application;
 
 let bounds: PIXI.Rectangle;
 let pixiCanvas = document.getElementById('pixi-canvas');
-console.log(pixiCanvas);
 let menu: MainUI;
 
 let init = () => {
@@ -35,7 +34,6 @@ let finishResize = _.debounce(() => {
   bounds.height = pixiCanvas.offsetHeight;
   pixiApp.renderer.resize(pixiCanvas.offsetWidth, pixiCanvas.offsetHeight);
   menu.onResize();
-  console.log('resize');
 }, 300);
 
 requestAnimationFrame(init);
