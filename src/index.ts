@@ -4,26 +4,38 @@ import { MainUI } from './ui/MainUI';
 
 export let pixiApp: PIXI.Application;
 
-let pixiCanvas = document.createElement('div');
-document.body.appendChild(pixiCanvas);
+let bounds: PIXI.Rectangle;
+let pixiCanvas = document.getElementById('pixi-canvas');
+console.log(pixiCanvas);
+let menu: MainUI;
 
 let init = () => {
-  let bounds = new PIXI.Rectangle(0, 0, 800, 600);
-
+  bounds = new PIXI.Rectangle(0, 0, pixiCanvas.offsetWidth, pixiCanvas.offsetHeight);
   pixiApp = new PIXI.Application({
     backgroundColor: 0x00ff00,
     antialias: true,
     resolution: 1,
-    roundPixels: true,
     transparent: true,
     width: bounds.width,
     height: bounds.height,
   });
 
-  document.body.append(pixiApp.view);
+  pixiCanvas.append(pixiApp.view);
 
-  let menu = new MainUI(bounds);
+  menu = new MainUI(bounds);
   pixiApp.stage.addChild(menu);
 };
+
+window.addEventListener('resize', e => {
+  finishResize();
+});
+
+let finishResize = _.debounce(() => {
+  bounds.width = pixiCanvas.offsetWidth;
+  bounds.height = pixiCanvas.offsetHeight;
+  pixiApp.renderer.resize(pixiCanvas.offsetWidth, pixiCanvas.offsetHeight);
+  menu.onResize();
+  console.log('resize');
+}, 300);
 
 requestAnimationFrame(init);

@@ -41,7 +41,7 @@ export class FireEffect extends PIXI.Container {
     particle.tint = COLOR_START;
     this.addChild(particle);
     particle.anchor.set(0.5, 1);
-    particle.x = (Math.random() - 0.5) * 20;
+    particle.x = (Math.random() - 0.5) * 10;
     this.addChild(particle);
     particle.scale.set(0, 0);
 
@@ -65,6 +65,6 @@ export class FireEffect extends PIXI.Container {
 
     this.makeParticle();
 
-    new JMTween(this, 500).onComplete(this.onTick).start();
+    new JMTween(this, 400).onComplete(this.onTick).start();
   }
 }

@@ -8,24 +8,35 @@ export class CardDemo extends BaseUI {
   private counter: FPSCounter;
   private jump: CardJump;
 
+  private title: PIXI.Text;
+  private backB: JMButton;
+
   constructor(bounds: PIXI.Rectangle) {
     super(bounds);
 
-    let title = new PIXI.Text('Card Demo');
-    title.x = 100;
-    this.addChild(title);
+    this.title = new PIXI.Text('Card Demo');
+    this.title.y = 50;
+    this.addChild(this.title);
 
-    let backB = new JMButton('Back', this.navOut);
-    backB.position.set(20, bounds.height - 50);
-    this.addChild(backB);
+    this.backB = new JMButton('Back', this.navOut);
+    this.addChild(this.backB);
 
     this.jump = new CardJump();
 
-    this.jump.position.set(100, 100);
     this.addChild(this.jump);
 
     this.counter = new FPSCounter();
     this.addChild(this.counter);
+
+    this.onResize();
+  }
+
+  public onResize = () => {
+    this.drawBackground();
+    this.title.x = (this.bounds.width - this.title.width) / 2;
+    this.jump.x = (this.bounds.width - this.jump.getWidth()) / 2;
+    this.jump.y = (this.bounds.height - this.jump.getHeight()) / 2;
+    this.backB.position.set(20, this.bounds.height - 50);
   }
 
   private navOut = () => {

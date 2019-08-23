@@ -44,6 +44,14 @@ export class CardJump extends PIXI.Container {
     this.running = false;
   }
 
+  public getWidth() {
+    return X_1 + 50;
+  }
+
+  public getHeight() {
+    return Y_F;
+  }
+
   private moveNextCard() {
     if (this.cards.length === 0) {
       this.running = false;

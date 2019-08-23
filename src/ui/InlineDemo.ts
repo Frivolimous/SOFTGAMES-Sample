@@ -6,19 +6,31 @@ import { RandomTriImgText } from '../components/inlineImgText/RandomTriImgText';
 export class InlineDemo extends BaseUI {
   private demo: RandomTriImgText;
 
+  private title: PIXI.Text;
+  private backB: JMButton;
+
   constructor(bounds: PIXI.Rectangle) {
     super(bounds);
 
-    let title = new PIXI.Text('Inline Demo');
-    this.addChild(title);
+    this.title = new PIXI.Text('Inline Demo');
+    this.title.y = 50;
+    this.addChild(this.title);
 
-    let backB = new JMButton('Back', this.navOut);
-    backB.position.set(20, bounds.height - 50);
-    this.addChild(backB);
+    this.backB = new JMButton('Back', this.navOut);
+    this.addChild(this.backB);
 
     this.demo = new RandomTriImgText();
-    this.demo.position.set(100, 100);
+    this.demo.x = 50;
+    this.demo.y = 100;
     this.addChild(this.demo);
+
+    this.onResize();
+  }
+
+  public onResize = () => {
+    this.drawBackground();
+    this.title.x = (this.bounds.width - this.title.width) / 2;
+    this.backB.position.set(20, this.bounds.height - 50);
   }
 
   protected navOut = () => {

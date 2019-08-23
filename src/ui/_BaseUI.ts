@@ -2,14 +2,30 @@ import * as PIXI from 'pixi.js';
 
 export class BaseUI extends PIXI.Container {
 
-  constructor(protected bounds: PIXI.Rectangle, bgColor = 0xcccccc) {
+  protected background: PIXI.Graphics;
+
+  constructor(protected bounds: PIXI.Rectangle, private bgColor = 0xcccccc) {
     super();
 
-    let background = new PIXI.Graphics();
+    this.interactive = true;
+    this.background = new PIXI.Graphics();
 
-    background.beginFill(bgColor);
-    background.drawShape(bounds);
+    console.log('pre', bgColor);
+    this.drawBackground();
+    console.log('post', bgColor);
 
-    this.addChild(background);
+    this.addChild(this.background);
+  }
+
+  public drawBackground = (bgColor?: number) => {
+    this.bgColor = bgColor || this.bgColor;
+
+    this.background.clear();
+    this.background.beginFill(this.bgColor);
+    this.background.drawShape(this.bounds);
+  }
+
+  public onResize = () => {
+
   }
 }
