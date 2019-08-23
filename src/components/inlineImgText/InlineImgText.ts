@@ -30,7 +30,7 @@ export class InlineImgText extends PIXI.Container {
 
     for (let el of arr) {
       if (el.charAt(0) === '@') {
-        let asset = IMG_SRCS[Number(el.charAt(1))]
+        let asset = IMG_SRCS[Number(el.charAt(1))];
         let sprite = PIXI.Sprite.from(asset.src);
         sprite.scale.set(fontSize / asset.height);
         // sprite.height = fontSize;

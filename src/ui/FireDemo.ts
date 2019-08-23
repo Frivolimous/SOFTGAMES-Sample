@@ -58,7 +58,7 @@ export class FireDemo extends BaseUI {
   }
 
   protected navOut = () => {
-    new JMTween(this, 500).to({alpha: 0.1}).start().onComplete(()=>{
+    new JMTween(this, 500).to({alpha: 0.1}).start().onComplete(() => {
       this.fireEffect.end();
       this.destroy();
     });

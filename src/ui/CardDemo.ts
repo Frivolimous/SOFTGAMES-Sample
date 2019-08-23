@@ -45,7 +45,7 @@ export class CardDemo extends BaseUI {
     new JMTween(this, 500).to({x: this.bounds.width / 2, y: this.bounds.height / 2, width: 1, height: 1}).start().easing(JMEasing.Back.In).onComplete(() => {
       this.counter.end();
       this.jump.end();
-  
+
       this.destroy();
     });
   }

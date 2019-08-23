@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 import { JMTween, JMEasing } from '../../lib/JMTween';
 
 const BUTTON_COLOR = 0x00aadd;
-const BUTTON_RECT = new PIXI.Rectangle(0, 0, 100, 30);
+const BUTTON_RECT = new PIXI.Rectangle(0, 0, 150, 50);
 
 export class JMButton extends PIXI.Container {
   protected _Disabled: boolean;
